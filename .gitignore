@@ -21,3 +21,6 @@ rice-box.go
 # IDEs
 .vscode
 .idea
+
+# env files
+.env

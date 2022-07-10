@@ -1,13 +1,17 @@
 version: "3"
 
+networks:
+  nginx_network:
+    external: true
+
 services:
   wg:
     build: .
-    #image: ngoduykhanh/wireguard-ui:latest
     container_name: wgui
+    networks:
+      - nginx_network
     cap_add:
       - NET_ADMIN
-    network_mode: host
     environment:
       - SENDGRID_API_KEY
       - EMAIL_FROM_ADDRESS

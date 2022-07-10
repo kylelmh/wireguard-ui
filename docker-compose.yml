@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  wg:
+    build: .
+    container_name: wgui
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - SENDGRID_API_KEY
+      - EMAIL_FROM_ADDRESS
+      - EMAIL_FROM_NAME
+      - SESSION_SECRET
+      - WGUI_USERNAME=alpha
+      - WGUI_PASSWORD=this-unusual-password
+      - WG_CONF_TEMPLATE
+    logging:
+      driver: json-file
+      options:
+        max-size: 50m
+    ports:
+      - 5000:5000
+    volumes:
+      - ./db:/app/db
+      - /etc/wireguard:/etc/wireguard
